@@ -4,6 +4,8 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 
 app.use(express.static('./client'));
+app.use(bodyParser.urlencoded({ extended: false }))
+
 
 //GET method route
 app.get('/samples', function (req, res) {
@@ -26,8 +28,8 @@ app.post('/samples', function (req, res) {
   //   res.status(500)
   //   res.send(err)
   // } else {
-    //console.log('hey')
-    res.status(201).send(req.data)
+    console.log(req.body)
+    res.status(201).send(req.body)
   //}
 })
 

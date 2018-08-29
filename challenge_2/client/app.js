@@ -12,7 +12,8 @@
       url: 'http://localhost:3000/samples',
       data : JSON.stringify(data),//fix this #
       success : function(result) {
-        console.log("Success: ", result);
+        //console.log("Success: ", result);
+        $(".response").html(data)
         $.ajax({
           type : "GET",
           url: 'http://localhost:3000/samples',
