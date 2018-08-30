@@ -1,0 +1,13 @@
+#board {
+}
+
+.row {
+  display: block;
+}
+
+.box {
+  width: 75px;
+  height: 75px;
+  border: solid black;
+  display: inline-block;
+}
