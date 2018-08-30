@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "babel": "babel . --out-dir compiled --presets=env,react --ignore=node_modules,compiled --source-maps inline --watch"
+    "babel": "babel . --out-dir public/compiled --presets=env,react --ignore=node_modules,public --source-maps inline --watch"
   },
   "author": "",
   "license": "ISC",

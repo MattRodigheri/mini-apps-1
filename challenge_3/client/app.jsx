@@ -37,14 +37,36 @@ class App extends React.Component {
   }
   //function to go from form1 -> form2
   form1Next() {
-    this.setState({
-      form1NextButton: false,
-      form2NextButton: true
-    }, () => {console.log("form1 ",this.state.form1NextButton);})
+    var nameInput = (document.getElementById('name').value);
+    var emailInput = (document.getElementById('email').value);
+    var passwordInput = (document.getElementById('password').value);
+
+    var item = {name: nameInput, email: emailInput, password: passwordInput}
+
+    $.ajax({
+      url: 'http://localhost:3000/project',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(item),
+      success: () => {
+        console.log('added info!');
+        this.setState({
+          //name, email password
+
+          form1NextButton: false,
+          form2NextButton: true
+        }, () => {console.log("form1 ",this.state.form1NextButton);})
+      },
+      error: () => {}
+    });
+
   }
   //function to go from form2 -> form3
   form2Next() {
     this.setState({
+      //line1, line2, city, state, zipcode, phonenumber
+
+
       form2NextButton: false,
       form3NextButton: true
     }, () => {console.log("form2 ", this.state.form2NextButton);})
@@ -52,6 +74,11 @@ class App extends React.Component {
   //function to go from form3 -> purchase
   form3Next() {
     this.setState({
+      //creditcard, expirydate, cvv, billingzip
+
+
+
+
       form3NextButton: false,
       purchaseButton: true
     }, () => {console.log("form3 ", this.state.form3NextButton);})
@@ -93,9 +120,6 @@ class App extends React.Component {
         <Confirmation purchase={this.purchase}/>
       )
     }
-    // else {
-    //   this.state.checkoutButton = true;
-    // }
   }
 };
 
@@ -111,9 +135,9 @@ function Home(props) {
 function Form1(props) {
   return (
     <div>
-      <div>Name:<input type="text" /></div>
-      <div>Email:<input type="text" /></div>
-      <div>Password:<input type="text" /></div>
+      <div>Name:<input type="text" id="name"/></div>
+      <div>Email:<input type="text" id="email"/></div>
+      <div>Password:<input type="text" id="password"/></div>
       <button id="form1NextButton" onClick={props.form1}>Next</button>
     </div>
   )
@@ -122,12 +146,12 @@ function Form1(props) {
 function Form2(props) {
   return (
     <div>
-      <div>Address Line 1:<input type="text" /></div>
-      <div>Address Line 2:<input type="text" /></div>
-      <div>City:<input type="text" /></div>
-      <div>State:<input type="text" /></div>
-      <div>Zip Code:<input type="text" /></div>
-      <div>Phone Number:<input type="text" /></div>
+      <div>Address Line 1:<input type="text" id="line1"/></div>
+      <div>Address Line 2:<input type="text" id="line2"/></div>
+      <div>City:<input type="text" id="city"/></div>
+      <div>State:<input type="text" id="state"/></div>
+      <div>Zip Code:<input type="text" id="zipcode"/></div>
+      <div>Phone Number:<input type="text" id="phonenumber"/></div>
       <button id="form2NextButton" onClick={props.form2}>Next</button>
     </div>
   )
@@ -136,10 +160,10 @@ function Form2(props) {
 function Form3(props) {
   return (
     <div>
-      <div>Credit Card Number:<input type="text" /></div>
-      <div>Expiry Date:<input type="text" /></div>
-      <div>CVV:<input type="number" /></div>
-      <div>Billing Zip Code:<input type="number" /></div>
+      <div>Credit Card Number:<input type="text" id="creditcard"/></div>
+      <div>Expiry Date:<input type="text" id="expirydate"/></div>
+      <div>CVV:<input type="number" id="cvv"/></div>
+      <div>Billing Zip Code:<input type="number" id="billingzip"/></div>
       <button id="form3NextButton" onClick={props.form3}>Next</button>
     </div>
   )
