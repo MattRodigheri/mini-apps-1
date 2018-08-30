@@ -6,6 +6,7 @@ var connection = mysql.createConnection({
   database : 'checkout'
 });
 
+//get
 var getFormData = function(callback) {
   connection.query('SELECT * FROM formdata', function (error, results, fields) {
     if (error) {
@@ -16,6 +17,7 @@ var getFormData = function(callback) {
   })
 };
 
+//post
 var insertFormData = function(item, callback) {
   connection.query((`INSERT INTO formdata (name, email, password, line1, line2, city, state, zipcode, phonenumber, creditcard, expirydate, cvv, billingzip) VALUES("${item.name}", "${item.email}", "${item.password}", "${item.line1}", "${item.line2}", "${item.city}", "${item.state}", "${item.zipcode}", "${item.phonenumber}", "${item.creditcard}", "${item.expirydate}", ${item.cvv}, ${item.billingzip});`), function (error, results, fields) {
     if (error) {
